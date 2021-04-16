@@ -1,0 +1,22 @@
+<h3>Demo ngClass</h3>
+<!-- cách viết với nhiều điện -->
+<p
+  class="text-center"
+  [class]="{ 'bg-success': isActive, 'bg-warning': !isActive }"
+>
+  Cyber soft
+</p>
+<!-- cách viết rút gọn khi có 1 điều kiện -->
+<p class="text-center" [class.bg-primary]="isActive">Thanh Tuan</p>
+<button (click)="isActive = !isActive">Toggle Active</button>
+
+<h3 class="mt-5">Demo ngStyle</h3>
+<p style="text-align: center" [style]="{ 'background-color': color }">
+  Tuan dep trai
+</p>
+<div
+  style="height: 200px; width: 200px"
+  [style]="{ 'background-image': 'url(' + imgSrc + ')' }"
+></div>
+<br />
+<div [innerHTML]="html"></div>

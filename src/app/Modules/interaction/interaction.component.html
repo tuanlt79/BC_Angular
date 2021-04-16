@@ -1,0 +1,6 @@
+<h1>Thanh Tuan</h1>
+<app-add-movie (onAdd)="handleAddMovie($event)"></app-add-movie>
+<app-movie-list
+  [movies]="movies"
+  (onDeleted)="handleDeleted($event)"
+></app-movie-list>

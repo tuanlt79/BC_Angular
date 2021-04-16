@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div *ngFor="let movie of movies" class="col-sm-4">
+      <app-movie-item
+        [movie]="movie"
+        (onSelect)="selectMovie($event)"
+        (onDeleted)="deletedMovie($event)"
+      ></app-movie-item>
+    </div>
+  </div>
+</div>
+<div *ngIf="selectedMovie" class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <img [src]="selectedMovie.image" alt="" width="300px" />
+    </div>
+    <div class="col-sm-6">
+      <h1>Ten Phim:{{ selectedMovie.name }}</h1>
+      <p>Mo Ta: {{ selectedMovie.description }}</p>
+    </div>
+  </div>
+</div>

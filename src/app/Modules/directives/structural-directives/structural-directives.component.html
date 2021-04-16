@@ -1,0 +1,62 @@
+<div class="mt-5">
+  <p *ngIf="isActive">Thanh Tuan</p>
+  <button (click)="isActive = !isActive">Toggle</button>
+
+  <!-- UI khi da dang nhap -->
+  <div *ngIf="isLoggedIn; else loginTemplate">
+    <p>Welcome Tuan</p>
+    <button (click)="isLoggedIn = false">Logout</button>
+  </div>
+  <!-- UI khi chua dang nhap -->
+  <!-- <div *ngIf="!isLoggedIn">
+    <p>Please Login</p>
+    <button (click)="isLoggedIn = true">Login</button>
+  </div> -->
+  <!-- ng-template: mặc định nội dung bên trong thẻ này sẽ không được hiển thị ra UI -->
+  <!-- nội dung này chỉ được hiển thị ra khi ta gọi tới template variable của nó -->
+  <ng-template #loginTemplate>
+    <div *ngIf="!isLoggedIn">
+      <p>Please Login</p>
+      <button (click)="isLoggedIn = true">Login</button>
+    </div>
+  </ng-template>
+
+  <h3>ngSwitch: ẩn hiện tag/component với 1 danh sách các điều kiện</h3>
+  <div [ngSwitch]="color">
+    <p *ngSwitchCase="'primary'" class="bg-primary">Primary</p>
+    <p *ngSwitchCase="'secondary'" class="bg-secondary">secondary</p>
+    <p *ngSwitchCase="'warning'" class="bg-warning">Warning</p>
+    <p *ngSwitchCase="'success'" class="bg-success">Success</p>
+    <p *ngSwitchCase="'danger'" class="bg-danger">Danger</p>
+    <p *ngSwitchCase>Default</p>
+  </div>
+  <select [value]="color" (change)="changeColor($event)">
+    <option value="">Default</option>
+    <option value="primary">primary</option>
+    <option value="secondary">secondary</option>
+    <option value="success">success</option>
+    <option value="warning">warning</option>
+    <option value="danger">danger</option>
+  </select>
+  <br />
+  <h3 class="mt-5">ngFor: duyệt mảng</h3>
+
+  <!-- kiểm tra students khác null hoặc undefined mới duyệt mảng -->
+  <!-- ng-container hoạt động tương tự Fragment bên react, chỉ render nội dung bên trong ra UI -->
+  <ng-container *ngIf="students">
+    <p *ngFor="let student of students; let idx = index; count as total">
+      {{ idx + 1 }}/{{ total }} - Name: {{ student.name }} - Age
+      {{ student.age }}
+    </p>
+  </ng-container>
+
+  <!-- Kết hợp ng-template và ng-container để tái sử dụng 1 đoạn UI -->
+  <!-- bọc đoạn code tái sử dụng bên trong ng-template -->
+  <ng-template #templateAlert>
+    <div class="alert alert-danger"><span> Something went wrong </span></div>
+  </ng-template>
+  <!-- chỗ nào cần sử dụng ta sẽ gọi ng-container với directive ngTemplate  -->
+  <ng-container *ngTemplateOutlet="templateAlert"></ng-container>
+  <ng-container *ngTemplateOutlet="templateAlert"></ng-container>
+  <ng-container *ngTemplateOutlet="templateAlert"></ng-container>
+</div>

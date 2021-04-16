@@ -1,0 +1,15 @@
+<div class="container">
+  <p>{{ username }}</p>
+  <input [value]="username" (input)="changeUserName($event)" />
+
+  <!-- two-way-biding để sử dụng cần inport FormsModule -->
+  <p>{{ email }}</p>
+  <input [(ngModel)]="email" />
+  <br />
+  <p>{{ color }}</p>
+  <select [(ngModel)]="color">
+    <option value="red">Red</option>
+    <option value="blue">Blue</option>
+    <option value="green">Green</option>
+  </select>
+</div>
